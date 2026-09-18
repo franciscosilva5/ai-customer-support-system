@@ -6,7 +6,7 @@ The system receives a customer ticket, classifies the request, retrieves relevan
 
 ## Live Demo
 
-Streamlit deployment coming soon.
+https://ai-customer-support-system-vercetius.streamlit.app/
 
 ## Overview
 
