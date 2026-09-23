@@ -117,6 +117,22 @@ The generation prompt instructs the model to:
 
 Tickets requiring escalation do not use the LLM to invent a resolution.
 
+## Design Decisions and Trade-offs
+
+The system combines deterministic routing, semantic retrieval, reranking, and grounded generation instead of relying on a single model for the complete support workflow.
+
+**Deterministic ticket routing** keeps category decisions easy to inspect and test. The trade-off is that rule-based routing is less flexible than a trained classifier when language varies significantly.
+
+**Semantic retrieval uses a bi-encoder** because embeddings can be indexed efficiently with FAISS. This provides fast candidate retrieval, but semantic similarity alone is not always precise enough for final ranking.
+
+**Cross-encoder reranking improves precision** by evaluating the ticket and candidate article together. This adds latency compared with vector search alone, so it is applied only to the smaller retrieved candidate set.
+
+**Escalation thresholds are explicit.** Weak classification or retrieval evidence results in human escalation instead of forcing an automatic answer. The thresholds are transparent but were tuned for this prototype and are not statistically calibrated.
+
+**Generation is grounded in retrieved support content.** The language model is used to formulate an answer rather than determine company policy or execute account actions.
+
+**Human escalation is preferred over unsupported automation.** This reduces automatic resolution coverage but prevents low-confidence retrieval from being presented as authoritative support guidance.
+
 ## Evaluation
 
 The project includes a small curated domain-specific evaluation set.
