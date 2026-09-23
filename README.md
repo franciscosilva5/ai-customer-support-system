@@ -197,7 +197,7 @@ the system detects weak evidence and recommends human escalation instead of gene
 
 Clone the repository:
 
-`git clone https://github.com/Vercetius/ai-customer-support-system.git`
+`git clone https://github.com/franciscosilva5/ai-customer-support-system.git`
 
 Enter the project:
 
