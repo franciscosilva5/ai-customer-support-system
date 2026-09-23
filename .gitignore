@@ -9,3 +9,4 @@ data/*.csv
 data/*.json
 models/*.joblib
 models/*.pkl
+*.backup
